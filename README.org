@@ -1,0 +1,10 @@
+* INTRO
+  Recursively find FLAC files starting in given directory 
+  and convert them to ogg vorbis files with making use of gnu parallel
+  to optimize converting speed
+
+* DEPENDENCIES
+  gnu parallel
+  posix shell
+  vorbis-tools
+  flac
