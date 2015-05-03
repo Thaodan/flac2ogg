@@ -2,6 +2,7 @@
 # Recursively find FLAC files starting in given directory 
 # and convert them to ogg vorbis files
 ver=2.0
+
 #\\ifdef WDMSG 
 . @libdir@/libsh
 #\\define MSG_TOOL_HELP_STR "d_msg Help"
@@ -10,16 +11,23 @@ appname=${0##*/}
 #\\define MSG_TOOL_HELP_STR cat
 #\\endif
 MAX_ARGS=2
-umlaut_cleaner() {
+
+umlaut_cleaner() 
 # remove umlauts for FAT file systems
+{
     echo "$1" | sed -e 's|ö|o|g' -e 's|ü|u|g' -e 's|ä|a|g'
 }
 
-fatfix() {
+fatfix()
+# clean not allowed chars from input for sane file names
+# on fat file systems
+{
     umlaut_cleaner "$1" | sed -e 's|:||g' 
 }
-# core function
+
+
 stub_main()
+# core function
 {
     local FLACFILE="$1"
     shift
@@ -48,8 +56,10 @@ stub_main()
 	vorbiscomment -a  -t "METADATA_BLOCK_PICTURE=$COVERART" "$OGGFILE"
     fi
 }
-# old main without using make
-old_main() {
+
+old_main()
+# old main without using parallel
+{
     find "$TARGET_DIR" -name \*.flac  | while read FLACFILE
     do
         stub_main "$FLACFILE"
