@@ -62,7 +62,6 @@ old_main() {
 
 main()
 {
-    tmpfile=$(mktemp ${appname}XXXXX)
     find "$TARGET_DIR" -name \*.flac | while read FLACFILE
     do
         echo "flac2ogg --stub-main \"$DESTINATION_DIR\" \"$FLACFILE\""
