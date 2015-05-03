@@ -4,7 +4,8 @@
   to optimize converting speed
 
 * DEPENDENCIES
-  gnu parallel
-  posix shell
-  vorbis-tools
-  flac
+  + gnu parallel
+  + posix shell
+  + vorbis-tools
+  + flac
+  + [[https://github.com/Thaodan/shpp][shpp]] (for building)
